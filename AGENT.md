@@ -34,3 +34,32 @@ node main.ts
 
 (Requires Node 22 or later, which runs TypeScript directly; on Node 22.6–
 22.17 use `node --experimental-strip-types main.ts`.)
+
+## v2 (24 Nov 2026)
+
+### Correction
+
+v1 sent `muhamad-abdi`, which is the person's name, not the account handle.
+The verified make.fun handle is `gila-kamu`, confirmed through the make.fun
+API: the `hunter` field on 4 of our submissions returns `gila-kamu`. The v1
+claim above (CLI profile command showing `@muhamad-abdi`) is superseded by
+this verification; the v1 sections are kept unchanged for history only.
+
+### What changed
+
+- `main.ts` was rewritten with a `HANDLE` constant (`"gila-kamu"`) and a
+  `validateHandle()` function that throws unless the handle is 1-30
+  characters with no whitespace (a single word). The output-directory logic
+  (`MAKEFUN_OUTPUT_DIR`, default `/output`) and the `node:fs` / `node:path`
+  imports are unchanged.
+- `README.md` was corrected: every `muhamad-abdi` became `gila-kamu`, a
+  "Correction (v2)" section was added, and the Run section now describes a
+  9-character entry.
+
+### Verification
+
+`main.ts` was run twice, to `/tmp/out-v2a` and `/tmp/out-v2b`. The two
+`entry.txt` files are byte-identical (`cmp` clean). Each is 9 bytes,
+contains exactly `gila-kamu`, and has no trailing newline.
+
+sha256: `a0c2768157aa29d8e30dc67081ee402762f6022cbd15c2df43161888ee244363`
