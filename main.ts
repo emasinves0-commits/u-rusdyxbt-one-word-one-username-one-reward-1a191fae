@@ -16,7 +16,12 @@ const HANDLE = "gila-kamu";
 const MIN_LENGTH = 1;
 const MAX_LENGTH = 30;
 
-// Gate: 1-30 characters, a single word, no whitespace anywhere.
+// A make.fun handle uses lowercase letters, digits and hyphens only.
+const HANDLE_CHARSET = /^[a-z0-9-]+$/;
+
+// Gate: 1-30 characters, a single word with no whitespace, drawn from the
+// make.fun handle charset, and containing at least one letter (so an
+// all-digit or all-hyphen string is not a handle).
 function validateHandle(handle: string): string {
   if (handle.length < MIN_LENGTH || handle.length > MAX_LENGTH) {
     throw new Error(
@@ -25,6 +30,14 @@ function validateHandle(handle: string): string {
   }
   if (/\s/.test(handle)) {
     throw new Error("handle must be a single word with no whitespace");
+  }
+  if (!HANDLE_CHARSET.test(handle)) {
+    throw new Error(
+      "handle may contain only lowercase letters, digits and hyphens",
+    );
+  }
+  if (!/[a-z]/.test(handle)) {
+    throw new Error("handle must contain at least one letter");
   }
   return handle;
 }
