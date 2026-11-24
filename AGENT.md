@@ -49,7 +49,9 @@ this verification; the v1 sections are kept unchanged for history only.
 
 - `main.ts` was rewritten with a `HANDLE` constant (`"gila-kamu"`) and a
   `validateHandle()` function that throws unless the handle is 1-30
-  characters with no whitespace (a single word). The output-directory logic
+  characters with no whitespace (a single word), uses only lowercase
+  letters, digits and hyphens, and contains at least one letter (so an
+  all-digit or all-hyphen string is rejected). The output-directory logic
   (`MAKEFUN_OUTPUT_DIR`, default `/output`) and the `node:fs` / `node:path`
   imports are unchanged.
 - `README.md` was corrected: every `muhamad-abdi` became `gila-kamu`, a
